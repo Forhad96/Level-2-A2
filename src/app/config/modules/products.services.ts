@@ -1,30 +1,38 @@
 import { TProduct } from "./products.interface";
 import { Product } from "./products.model";
 
-
-const createProductIntoDB = async (product: TProduct): Promise<object> => {
-  const result = await Product.create(product);
-  console.log(product);
+//get
+const findAllProduct = async () => {
+  const result = await Product.find();
   return result;
 };
 
-
-
-const getAllProductsFormDB = async ()=>{
-  const result = await Product.find()
-  return result
-}
-
-
-
-const getSingleProductFormDB = async(id:string)=>{
-  const result = await Product.findById(id)
+const findProductById = async (id: string) => {
+  const result = await Product.findById(id);
   return result;
-} 
+};
 
+// update
+
+const updateProductById = async (id: string,data:TProduct) => {
+  const result = await Product.findByIdAndUpdate(id, data, { new: true });
+  return result;
+};
+
+// post
+
+export const createProduct = async (productData: TProduct) => {
+  try {
+    const result = await Product.create(productData);
+    return result;
+  } catch (error: any) {
+    throw new Error("Error creating product: " + error.message);
+  }
+};
 
 export const productServices = {
-    createProductIntoDB,
-    getAllProductsFormDB,
-    getSingleProductFormDB
-}
+  createProduct,
+  findAllProduct,
+  findProductById,
+  updateProductById,
+};

@@ -13,4 +13,6 @@
 
 -[X]:create new product with endpint api/product
 -[X]:Retrieve a List of All Products
--[]:Retrieve a Specific Product by ID
+-[X]:Retrieve a Specific Product by ID
+-[]:Update Product Information
+-[]: Delete a Product
