@@ -12,4 +12,5 @@
 ## Product Management
 
 -[X]:create new product with endpint api/product
--[]:Retrieve a List of All Products
+-[X]:Retrieve a List of All Products
+-[]:Retrieve a Specific Product by ID
