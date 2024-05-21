@@ -21,7 +21,7 @@ const updateProductById = async (id: string,data:TProduct) => {
 
 // post
 
-export const createProduct = async (productData: TProduct) => {
+ const createProduct = async (productData: TProduct) => {
   try {
     const result = await Product.create(productData);
     return result;
@@ -30,9 +30,25 @@ export const createProduct = async (productData: TProduct) => {
   }
 };
 
+
+
+
+//delete 
+
+const deleteProductById = async (id:string)=>{
+  const result = await Product.findByIdAndDelete(id)
+  return result;
+}
+
+
+
+
+
+
 export const productServices = {
   createProduct,
   findAllProduct,
   findProductById,
   updateProductById,
+  deleteProductById,
 };

@@ -14,5 +14,6 @@
 -[X]:create new product with endpint api/product
 -[X]:Retrieve a List of All Products
 -[X]:Retrieve a Specific Product by ID
--[]:Update Product Information
+-[X]:Update Product Information
 -[]: Delete a Product
+-[]:  Search a product Endpoint: /api/products?searchTerm=iphone

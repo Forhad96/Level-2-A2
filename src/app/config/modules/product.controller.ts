@@ -93,9 +93,34 @@ const updateProduct = async (req:Request,res:Response)=>{
   }
 }
 
+
+const deleteSingleProduct = async (req:Request,res:Response)=>{
+  try {
+    const {productId} = req.params;
+    const result = await productServices.deleteProductById(productId)
+     if (result) {
+       console.log("ok", result);
+       return res.status(200).json({ success: true, message:"Product deleted successful", data: result });
+     } else {
+       return res
+         .status(404)
+         .json({ success: false, message: "Product not found" });
+     }
+  } catch (error:any) {
+    console.log(error);
+        return res.status(500).json({
+          success: false,
+          message: "Error deleting product",
+          error: error.message,
+        });
+    
+  }
+}
+
 export const productController = {
   addProduct,
   getAllProducts,
   getSingleProduct,
-  updateProduct
+  updateProduct,
+  deleteSingleProduct,
 };
