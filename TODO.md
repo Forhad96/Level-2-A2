@@ -28,7 +28,7 @@
 ## Order Management
 
 ### POST /api/orders
-- [ ] Create a POST endpoint to create a new order.
+- [X] Create a POST endpoint to create a new order.
 - [ ] Write a controller function to handle order creation.
 - [ ] Validate incoming order data using Joi/Zod.
 - [ ] Check inventory for the ordered product quantity.
