@@ -15,6 +15,14 @@ const createProductIntoDB = async (product: TProduct): Promise<object> => {
 
 
 
+const getAllProductsFormDB = async ()=>{
+  const result = await Product.find()
+  return result
+}
+
+
+
 export const productServices = {
     createProductIntoDB,
+    getAllProductsFormDB,
 }
