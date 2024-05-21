@@ -15,5 +15,5 @@
 -[X]:Retrieve a List of All Products
 -[X]:Retrieve a Specific Product by ID
 -[X]:Update Product Information
--[]: Delete a Product
--[]:  Search a product Endpoint: /api/products?searchTerm=iphone
+-[X]: Delete a Product
+-[X]:  Search a product Endpoint: /api/products?searchTerm=iphone

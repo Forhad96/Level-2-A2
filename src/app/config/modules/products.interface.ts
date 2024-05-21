@@ -1,4 +1,3 @@
-
 export type TProduct = {
   name: string;
   description: string;
