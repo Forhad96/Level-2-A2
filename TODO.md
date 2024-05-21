@@ -4,9 +4,9 @@
 ## Project setup
 
 -[X]:Set up project with express,typescript,dotenv,mongoDB,Mongoose,and joi/zod.
--[ ]:create a interface and model
--[ ]:create module folder structure
--[ ]:create json data
+-[X]:create a interface and model
+-[X]:create module folder structure
+-[X]:create json data
 
 
 ## Product Management
