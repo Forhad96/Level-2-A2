@@ -6,8 +6,9 @@ const router = express.Router()
 // create order
 router.post('/',orderController.handleCreateOrder)
 
-// get all order
+// get all order and with query by email 
 router.get('/',orderController.handleGetAllOrders)
+
 
 
 

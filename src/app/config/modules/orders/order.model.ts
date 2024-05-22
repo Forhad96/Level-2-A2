@@ -1,5 +1,5 @@
 import {Model, Schema, model} from 'mongoose';
-import { TOrders } from './orders.interface';
+import { TOrder } from './orders.interface';
 
 
 // {
@@ -10,7 +10,7 @@ import { TOrders } from './orders.interface';
 // }
 
 
-const OrderSchema = new Schema<TOrders>({
+const OrderSchema = new Schema<TOrder>({
     email:{type:String,require:true},
     productId:{type:String,require:true},
     price:{type:Number,require:true},
@@ -21,4 +21,4 @@ const OrderSchema = new Schema<TOrders>({
 
 
 // create model and export 
-export const OrderModel = model<TOrders>("Orders",OrderSchema)
+export const OrderModel = model<TOrder>("Orders",OrderSchema)

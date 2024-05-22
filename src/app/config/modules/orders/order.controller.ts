@@ -26,26 +26,27 @@ const handleCreateOrder = async (req: Request, res: Response) => {
 
 const handleGetAllOrders = async (req: Request, res: Response) => {
   try {
+    const { email } = req.query;
+    let query = {};
+    if (email) {
+      query= { email: email };
+    }
     // Attempt to retrieve all orders using the orderServices.
-    const orders = await orderServices.getAllOrders();
+    const orders = await orderServices.getAllOrders(query);
 
     // Send the orders as a response.
-    res
-      .status(200)
-      .json({
-        success: true,
-        message: "Orders retrieved successfully",
-        data: orders,
-      });
-  } catch (error:any) {
+    res.status(200).json({
+      success: true,
+      message: "Orders retrieved successfully",
+      data: orders,
+    });
+  } catch (error: any) {
     // Handle any errors that occur during the retrieval of orders.
-    res
-      .status(500)
-      .json({
-        success: false,
-        message: "An error occurred while retrieving orders.",
-        error: error.message,
-      });
+    res.status(500).json({
+      success: false,
+      message: "An error occurred while retrieving orders.",
+      error: error.message,
+    });
   }
 };
 

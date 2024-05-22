@@ -1,19 +1,18 @@
+import { FilterQuery } from "mongoose";
 import { OrderModel } from "./order.model";
-import { TOrders } from "./orders.interface";
+import { TOrder } from "./orders.interface";
 
-
-const createOrder = async (orderData: TOrders): Promise<TOrders> => {
+const createOrder = async (orderData: TOrder): Promise<TOrder> => {
   const order = OrderModel.create(orderData);
   return order;
 };
 
+const getAllOrders = (query:object): Promise<TOrder[]> => {
+  const orders = OrderModel.find(query);
 
-const getAllOrders = ():Promise<Array<Object>> =>{
-    const orders = OrderModel.find({})
-
-    return orders
-}
+  return orders;
+};
 export const orderServices = {
   createOrder,
-  getAllOrders
+  getAllOrders,
 };

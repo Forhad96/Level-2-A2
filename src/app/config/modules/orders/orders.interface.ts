@@ -1,5 +1,5 @@
 
-export type TOrders= {
+export type TOrder= {
     email:string,
     productId:string,
     price:number,
