@@ -10,14 +10,14 @@ const handleCreateOrder = async (
   try {
     const { order } = req.body;
     // Call the createOrder service with the order from the request body
-    // const result = await orderServices.createOrderAndUpdateInventory(order);
     const validatedOrder = await zOrderSchema.parse(order) 
+    const result = await orderServices.createOrderAndUpdateInventory(validatedOrder);
 
     // Send a response to the client with the result of the order creation
     res.status(200).json({
       success: true,
       message: "order created successfully",
-      data: validatedOrder,
+      data: result,
     });
   } catch (error: any) {
     // Log the error and send a response to the client with an error message
