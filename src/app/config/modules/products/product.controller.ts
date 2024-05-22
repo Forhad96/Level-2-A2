@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import { productServices } from "./products.services";
+import { productServices } from "./products.service";
 import { ok } from "assert";
 
-const getSingleProduct = async (req: Request, res: Response) => {
+const handleGetSingleProduct = async (req: Request, res: Response) => {
   try {
     const { productId } = req.params;
     const result = await productServices.findProductById(productId);
@@ -22,7 +22,7 @@ const getSingleProduct = async (req: Request, res: Response) => {
   }
 };
 
-const getAllProducts = async (req: Request, res: Response) => {
+const handleGetAllProducts = async (req: Request, res: Response) => {
   try {
     const { searchTerm } = req.query;
     const result = await productServices.findAllProduct(searchTerm as string);
@@ -41,7 +41,7 @@ const getAllProducts = async (req: Request, res: Response) => {
   }
 };
 
-const addProduct = async (req: Request, res: Response): Promise<void> => {
+const handleAddProduct = async (req: Request, res: Response): Promise<void> => {
   try {
     const { product } = req.body;
     const result = await productServices.createProduct(product);
@@ -61,7 +61,7 @@ const addProduct = async (req: Request, res: Response): Promise<void> => {
   }
 };
 
-const updateProduct = async (req: Request, res: Response) => {
+const handleUpdateProduct = async (req: Request, res: Response) => {
   try {
     const { productId } = req.params;
     const { data } = req.body;
@@ -84,7 +84,7 @@ const updateProduct = async (req: Request, res: Response) => {
   }
 };
 
-const deleteSingleProduct = async (req: Request, res: Response) => {
+const handleDeleteSingleProduct = async (req: Request, res: Response) => {
   try {
     const { productId } = req.params;
     const result = await productServices.deleteProductById(productId);
@@ -110,7 +110,7 @@ const deleteSingleProduct = async (req: Request, res: Response) => {
   }
 };
 
-const getProductsBySearch = async (req: Request, res: Response) => {
+const handleGetProductsBySearch = async (req: Request, res: Response) => {
   try {
     const { searchTerm } = req.query;
     if (typeof searchTerm !== "string") {
@@ -132,10 +132,10 @@ const getProductsBySearch = async (req: Request, res: Response) => {
 };
 
 export const productController = {
-  addProduct,
-  getAllProducts,
-  getSingleProduct,
-  updateProduct,
-  deleteSingleProduct,
-  getProductsBySearch,
+  handleAddProduct,
+  handleGetAllProducts,
+  handleGetSingleProduct,
+  handleUpdateProduct,
+  handleDeleteSingleProduct,
+  handleGetProductsBySearch,
 };
