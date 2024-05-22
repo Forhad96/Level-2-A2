@@ -37,12 +37,9 @@ const updateProductById = async (id: string, data: TProduct) => {
 // post
 
 const createProduct = async (productData: TProduct) => {
-  try {
     const result = await ProductModel.create(productData);
     return result;
-  } catch (error: any) {
-    throw new Error("Error creating product: " + error.message);
-  }
+
 };
 
 //delete

@@ -1,8 +1,14 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { productServices } from "./products.service";
 import { ok } from "assert";
+import { zProductSchema } from "./product.validation";
+import { z } from "zod";
 
-const handleGetSingleProduct = async (req: Request, res: Response) => {
+const handleGetSingleProduct = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const { productId } = req.params;
     const result = await productServices.findProductById(productId);
@@ -41,23 +47,25 @@ const handleGetAllProducts = async (req: Request, res: Response) => {
   }
 };
 
-const handleAddProduct = async (req: Request, res: Response): Promise<void> => {
+const handleAddProduct = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const { product } = req.body;
-    const result = await productServices.createProduct(product);
-
+    const validatedProduct = zProductSchema.parse(product);
+    const result = await productServices.createProduct(validatedProduct);
+console.log(product);
+// return
     res.status(200).json({
       success: true,
-      message: "Product created successfully",
+      message: `Product ${validatedProduct.name} created successfully`,
       data: result,
     });
   } catch (error: any) {
-    console.log(error);
-    res.status(500).json({
-      success: false,
-      message: "There was an error creating the product",
-      error: error.message,
-    });
+    // console.log("helle",{error});
+    next(error);
   }
 };
 

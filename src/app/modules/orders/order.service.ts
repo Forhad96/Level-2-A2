@@ -24,7 +24,7 @@ const createOrderAndUpdateInventory = async (
 
   // Check if the product is out of stock
   if (product.inventory.quantity < orderedQuantity)
-    throw new Error("Product out of stock");
+    throw new Error("Insufficient quantity available in inventory");
 
   // Reduce product quantity in inventory
   product.inventory.quantity -= orderedQuantity;
