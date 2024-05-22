@@ -26,7 +26,7 @@ Q5. /api/orders (POST) অর্ডার ক্রিয়েট করার স
 -[X]:create interface and model for ordrs
 -[X]: Create a New Order /api/orders
 -[X]:Retrieve All Orders
--[X]:Retrieve Orders by User Email
+-[**X**]:Retrieve Orders by User Email
 -[]:
 -[]:
 

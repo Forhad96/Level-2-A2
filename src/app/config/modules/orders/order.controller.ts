@@ -5,7 +5,7 @@ const handleCreateOrder = async (req: Request, res: Response) => {
   try {
     const { order } = req.body;
     // Call the createOrder service with the order from the request body
-    const result = await orderServices.createOrder(order);
+    const result = await orderServices.createOrderAndUpdateInventory(order);
 
     // Send a response to the client with the result of the order creation
     res.status(200).json({
