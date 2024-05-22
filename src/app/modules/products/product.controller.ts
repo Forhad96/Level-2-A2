@@ -56,20 +56,22 @@ const handleAddProduct = async (
     const { product } = req.body;
     const validatedProduct = zProductSchema.parse(product);
     const result = await productServices.createProduct(validatedProduct);
-console.log(product);
-// return
+
     res.status(200).json({
       success: true,
       message: `Product ${validatedProduct.name} created successfully`,
       data: result,
     });
   } catch (error: any) {
-    // console.log("helle",{error});
     next(error);
   }
 };
 
-const handleUpdateProduct = async (req: Request, res: Response) => {
+const handleUpdateProduct = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const { productId } = req.params;
     const { data } = req.body;
@@ -84,15 +86,15 @@ const handleUpdateProduct = async (req: Request, res: Response) => {
         .json({ success: false, message: "Product not found" });
     }
   } catch (error: any) {
-    return res.status(500).json({
-      success: false,
-      message: "Error updating product",
-      error: error.message,
-    });
+    next(error);
   }
 };
 
-const handleDeleteSingleProduct = async (req: Request, res: Response) => {
+const handleDeleteSingleProduct = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const { productId } = req.params;
     const result = await productServices.deleteProductById(productId);
@@ -110,15 +112,15 @@ const handleDeleteSingleProduct = async (req: Request, res: Response) => {
     }
   } catch (error: any) {
     console.log(error);
-    return res.status(500).json({
-      success: false,
-      message: "Error deleting product",
-      error: error.message,
-    });
+    next(error);
   }
 };
 
-const handleGetProductsBySearch = async (req: Request, res: Response) => {
+const handleGetProductsBySearch = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const { searchTerm } = req.query;
     if (typeof searchTerm !== "string") {
@@ -131,11 +133,7 @@ const handleGetProductsBySearch = async (req: Request, res: Response) => {
 
     res.status(200).json({ success: true, data: product });
   } catch (error: any) {
-    return res.status(400).json({
-      success: false,
-      message: "Error searching product.",
-      error: error.message,
-    });
+next(error)
   }
 };
 
