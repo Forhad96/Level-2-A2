@@ -1,8 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { productServices } from "./products.service";
-import { ok } from "assert";
 import { zProductSchema } from "./product.validation";
-import { z } from "zod";
+
 
 const handleGetSingleProduct = async (
   req: Request,
@@ -18,20 +17,27 @@ const handleGetSingleProduct = async (
       message: "Product retrieve successfully",
       data: result,
     });
-  } catch (error: any) {
+  } catch (error) {
     console.log(error);
-    res.status(500).json({
-      success: false,
-      message: "There was an error retrieving the product",
-      error: error.message,
-    });
+next(error)
   }
 };
 
 const handleGetAllProducts = async (req: Request, res: Response) => {
   try {
     const { searchTerm } = req.query;
-    const result = await productServices.findAllProduct(searchTerm as string);
+let query = {};
+if (searchTerm) {
+  query = {
+    $or: [
+      { name: { $regex: searchTerm, $options: "i" } },
+      { description: { $regex: searchTerm, $options: "i" } },
+      { tags: { $regex: searchTerm, $options: "i" } },
+    ],
+  };
+}
+
+    const result = await productServices.findAllProduct(query);
     res.status(200).json({
       success: true,
       message: "Product retrieve successfully",

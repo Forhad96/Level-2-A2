@@ -2,24 +2,10 @@ import { TProduct } from "./products.interface";
 import { ProductModel } from "./products.model";
 
 //get all data and also get data by search query
-const findAllProduct = async (searchTerm: string) => {
-  let query = {};
-  console.log(searchTerm);
-  if (searchTerm) {
-    query = {
-      $or: [
-        { name: { $regex: searchTerm, $options: "i" } },
-        { description: { $regex: searchTerm, $options: "i" } },
-        { tags: { $regex: searchTerm, $options: "i" } },
-      ],
-    };
-  }
-  try {
+const findAllProduct = async (query: object) => {
     const result = await ProductModel.find(query);
     return result;
-  } catch (error: any) {
-    throw new Error("Error retrieving products: " + error.message);
-  }
+
 };
 
 const findProductById = async (id: string) => {

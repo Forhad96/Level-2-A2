@@ -1,14 +1,8 @@
-import { FilterQuery } from "mongoose";
 import { OrderModel } from "./order.model";
 import { TOrder } from "./orders.interface";
 import { ProductModel } from "../products/products.model";
 
-/**
- * This function creates a new order.
- * @param {TOrder} orderData - The data for the order to be created.
- * @returns {Promise<TOrder>} - A promise that resolves to the created order.
- * @throws {Error} - Throws an error if the product is not found or if the product is out of stock.
- */
+
 const createOrderAndUpdateInventory = async (
   orderData: TOrder
 ): Promise<TOrder> => {
