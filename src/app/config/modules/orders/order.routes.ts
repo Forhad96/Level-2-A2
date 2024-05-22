@@ -6,6 +6,9 @@ const router = express.Router()
 // create order
 router.post('/',orderController.handleCreateOrder)
 
+// get all order
+router.get('/',orderController.handleGetAllOrders)
+
 
 
 

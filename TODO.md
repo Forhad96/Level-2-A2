@@ -23,9 +23,9 @@
 Q5. /api/orders (POST) অর্ডার ক্রিয়েট করার সময় কি প্রাইস, প্রোডাক্ট আইডি ডাটাবেজ থেকে নিব ?
 না। ক্লায়েন্ট বা পোস্টম্যান থেকে পাঠানো হবে । তবে এই ক্ষেত্রে যদি ভুল আইডি পাঠানো হয় এবং সেটা অর্ডার হয়ে গেলে কিন্তু হবে না । আপনাকে চেকিং করে দেখতে হবে। আইডি সঠিক কিনা। সঠিক না হলে এরর রেস্পন্স পাঠাবেন। মনে রাখবেন **productId** মংগোডিবিতে থাকা প্রোডাক্ট কালেকশনের প্রতিটি প্রোডাক্টের _id । -->
 
--[]:create interface and model for ordrs
--[]: Create a New Order /api/orders
--[]:Retrieve All Orders
+-[X]:create interface and model for ordrs
+-[X]: Create a New Order /api/orders
+-[X]:Retrieve All Orders
 -[]:Retrieve Orders by User Email
 -[]:
 -[]:
