@@ -8,7 +8,6 @@ const createOrderAndUpdateInventory = async (
 ): Promise<TOrder> => {
   // Extract product id and orderedQuantity from order data
   const { productId, quantity: orderedQuantity } = orderData;
-
   // Find product by id
   const product = await ProductModel.findById(productId, {
     inventory: 1,

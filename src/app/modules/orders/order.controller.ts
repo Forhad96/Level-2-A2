@@ -21,7 +21,6 @@ const handleCreateOrder = async (
     });
   } catch (error: any) {
     // Log the error and send a response to the client with an error message
-    console.log(error);
     next(error);
   }
 };

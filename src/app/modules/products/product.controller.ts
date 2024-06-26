@@ -59,7 +59,7 @@ const handleAddProduct = async (
   next: NextFunction
 ) => {
   try {
-    const { product } = req.body;
+    const product  = req.body;
     const validatedProduct = zProductSchema.parse(product);
     const result = await productServices.createProduct(validatedProduct);
 
@@ -105,11 +105,10 @@ const handleDeleteSingleProduct = async (
     const { productId } = req.params;
     const result = await productServices.deleteProductById(productId);
     if (result) {
-      console.log("ok", result);
       return res.status(200).json({
         success: true,
         message: "Product deleted successful",
-        data: result,
+        data: null,
       });
     } else {
       return res
